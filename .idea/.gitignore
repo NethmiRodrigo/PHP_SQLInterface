@@ -1,0 +1,6 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../:\Program Files\XAMPP\htdocs\sample_project\.idea/dataSources/
+/dataSources.local.xml
