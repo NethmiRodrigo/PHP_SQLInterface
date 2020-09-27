@@ -1,8 +1,14 @@
 <?php
-    include_once('config/db_connect.php');
-    $conn = getDb();
-    if($conn == null) echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>Error!</div>";
+session_start();
+include_once('config/db_connect.php');
+$conn = connect();
+if(!$conn) {
+    echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>Session timed out!</div>";
+    header('Location: index.php');
+}
+mysqli_close($conn);
 ?>
+
 <head>
     <title>Bank of Asia</title>
     <!-- Compiled and minified CSS -->
@@ -31,13 +37,14 @@
      </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="http://localhost/sample_project/home.php" class="brand-logo" style="margin-left:1.5em; padding: 10px"><img src="assets/logo.jpg" style="height: 50%; width: 12%; border-radius: 100px"/></a>
+<nav>
+    <div class="nav-wrapper">
+        <a href="http://localhost/sample_project/home.php" class="brand-logo" style="margin-left:1.5em; padding: 10px"><img src="assets/logo.jpg" style="height: 50%; width: 12%; border-radius: 100px"/></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="">Add Employee</a></li>
+            <li><a href="addBranch.php">Add Branch</a></li>
+            <li><a href="config/logout.php">Logout</a></li>
         </ul>
-        </div>
-    </nav>
+    </div>
+</nav>
 
 
