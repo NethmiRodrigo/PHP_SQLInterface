@@ -63,8 +63,8 @@
                             <input type="text" name="type" required class="form-control"/>
                         </div>
 			            <div class="form-group">
-                            <label for="password">Department Head</label>
-                            <input type="text" name="head" class="form-control"/>
+                            <label for="head">Department Head</label>
+                            <input type="number" name="head" class="form-control"/>
                         </div>
                         <div class="text-center" style="width: 100%">
                             <button type="submit" name="submit" value="submit" class="btn btn-primary" style="background-color: #2193b0 !important;color: white !important; width: 100%">Submit </button>

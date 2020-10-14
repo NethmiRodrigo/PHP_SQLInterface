@@ -95,17 +95,20 @@ if(isset($_POST["submit"])){
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row" style="padding-top: 50px">
         <div class="col-sm">
-            <h5 class="text-center">Branches</h5>
+            <h5 class="text-center">Regional Branches</h5>
             <div class="card" style="width: 100%; padding: 10px">
-                <table id="table_id" class="table table-striped" >
+                <table id="regional_table" class="table table-striped" >
                     <thead class="thead-dark">
                     <tr>
                         <th>Branch ID</th>
                         <th>Branch Name</th>
                         <th>Branch Location</th>
                         <th>Building Area</th>
-                        <th>Type</th>
+                        <th>Temporary Debt</th>
+                        <th>Regional Code</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -115,16 +118,35 @@ if(isset($_POST["submit"])){
                             <td><?php echo htmlspecialchars($regional_branch["branch_name"]);?></td>
                             <td> <?php echo htmlspecialchars($regional_branch["location"]);?></td>
                             <td><?php echo htmlspecialchars($regional_branch["building_area"]);?></td>
-                            <td>Regional</td>
+                            <td><?php echo htmlspecialchars($regional_branch["temp_debt"]);?></td>
+                            <td><?php echo htmlspecialchars($regional_branch["regional_code"]);?></td>
                         </tr>
                     <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm" style="padding-top: 50px">
+            <h5 class="text-center">Supergrade Branches</h5>
+            <div class="card" style="width: 100%; padding: 10px">
+                <table id="supergrade_table" class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Branch ID</th>
+                        <th>Branch Name</th>
+                        <th>Branch Location</th>
+                        <th>Building Area</th>
+                        <th>Main City</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <?php foreach  ($supergrade_branches as $supergrade_branch) { ?>
                         <tr>
                             <td><?php echo htmlspecialchars($supergrade_branch["branch_id"]);?></td>
                             <td><?php echo htmlspecialchars($supergrade_branch["branch_name"]);?></td>
                             <td> <?php echo htmlspecialchars($supergrade_branch["location"]);?></td>
                             <td><?php echo htmlspecialchars($supergrade_branch["building_area"]);?></td>
-                            <td>Supergrade</td>
+                            <td><?php echo htmlspecialchars($supergrade_branch["main_city"]);?></td>
                         </tr>
                     <?php }?>
                     </tbody>
@@ -136,7 +158,10 @@ if(isset($_POST["submit"])){
 
 <script type="text/javascript">
     $(document).ready(function() {
-    $('#table_id').DataTable();
+    $('#regional_table').DataTable();
+} );
+    $(document).ready(function() {
+    $('#supergrade_table').DataTable();
 } );
     function changeType(sel) {
          var p = document.getElementById('regional');

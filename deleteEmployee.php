@@ -14,27 +14,27 @@ if(isset($_POST["submit"])){
     $emp_id = $_POST["id"];
     $type = $_POST["type"];
     $sql = '';
-    if($type == 'intern'){
-        global $sql;
-        $sql = "DELETE FROM intern WHERE emp_id = '$emp_id'";
-    }
-    else if($type == 'permanent_employee'){
-        global $sql;
-        $sql = "DELETE FROM permanent_employee WHERE emp_id = '$emp_id'";
+    if($type == 'intern' or $type == 'permanent_employee'){
+        if($type == 'intern'){
+            global $sql;
+            $sql = "DELETE FROM intern WHERE emp_id = '$emp_id'";
+        }
+        else if($type == 'permanent_employee'){
+            global $sql;
+            $sql = "DELETE FROM permanent_employee WHERE emp_id = '$emp_id'";
+        }
+        if(!mysqli_query($conn, $sql)) echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>$conn->error</div>";
     }
 
+    $sql = "DELETE FROM employee WHERE emp_id = '$emp_id'";
     if(mysqli_query($conn, $sql)){
-        $sql = "DELETE FROM employee WHERE emp_id = '$emp_id'";
-        if(mysqli_query($conn, $sql)){
-            echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY DELETED!</div>";
-        }
-        else {
-            echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>$conn->error</div>";
-        }
+        echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY DELETED!</div>";
     }
     else {
         echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>$conn->error</div>";
     }
+
+
     mysqli_close($conn);
 }
 ?>
@@ -55,6 +55,7 @@ if(isset($_POST["submit"])){
                             <select id="type" name="type" class="form-control">
                                 <option selected value="intern">Intern</option>
                                 <option value="permanent_employee">Permanent</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
                         <div class="text-center" style="width: 100%">

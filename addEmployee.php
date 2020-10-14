@@ -39,26 +39,31 @@
             $sql = "INSERT INTO employee VALUES ('', '$dob', '$qualification', '$emp_name', '$nic', '$emp_address', '$type', '$branch_type', '$dept_code', NULL,'$branch_id')";
         }
         if(mysqli_query($conn, $sql)){
-            $last_id = $conn->insert_id;
-            if($type == 'Intern'){
-                global $sql;
-                $temp_id = $_POST["temp_id"];
-                $period = $_POST["period"];
-                $start_date = $_POST["start_date"];
-                $salary_scale = $_POST["salary_scale"];
-                $sql = "INSERT INTO intern VALUES('$last_id', '$temp_id', '$period', '$start_date', '$salary_scale')";
-            }
-            else if($type == 'Permanent'){
-                global $sql;
-                $basic_salary = $_POST["basic_salary"];
-                $grade = $_POST["grade"];
-                $sql = "INSERT INTO permanent_employee VALUES('$last_id', '$basic_salary', '$grade')";
-            }
-            if(mysqli_query($conn, $sql)){
-                echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY ADDED!</div>";
+            if($type == 'Intern' or $type == 'Permanent'){
+                $last_id = $conn->insert_id;
+                if($type == 'Intern'){
+                    global $sql;
+                    $temp_id = $_POST["temp_id"];
+                    $period = $_POST["period"];
+                    $start_date = $_POST["start_date"];
+                    $salary_scale = $_POST["salary_scale"];
+                    $sql = "INSERT INTO intern VALUES('$last_id', '$temp_id', '$period', '$start_date', '$salary_scale')";
+                }
+                else if($type == 'Permanent'){
+                    global $sql;
+                    $basic_salary = $_POST["basic_salary"];
+                    $grade = $_POST["grade"];
+                    $sql = "INSERT INTO permanent_employee VALUES('$last_id', '$basic_salary', '$grade')";
+                }
+                if(mysqli_query($conn, $sql)){
+                    echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY ADDED!</div>";
+                }
+                else {
+                    echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>$conn->error</div>";
+                }
             }
             else {
-                echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>$conn->error</div>";
+                echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY ADDED!</div>";
             }
         }
         else{
@@ -99,6 +104,7 @@
                             <label for="type">Employee Type</label>
                             <select id="type" name="type" class="form-control" onChange="changeType(this);">
                                 <option selected>Choose type...</option>
+                                <option value="Other">Other</option>
                                 <option value="Intern">Intern</option>
                                 <option value="Permanent">Permanent</option>
                             </select>
@@ -109,8 +115,8 @@
                                 <input type="text" name="temp_id" class="form-control"/>
                             </div>
                             <div class="form-group">
-                                <label for="period">Period</label>
-                                <input type="text" name="period" class="form-control"/>
+                                <label for="period">Period (in months)</label>
+                                <input type="text" name="period" class="form-control" placeholder="Eg: 12"/>
                             </div>
 							<div class="form-group">
                                 <label for="start_date">Start Date</label>
@@ -237,14 +243,16 @@
              {
                 p.style.display = 'block';
                 b.style.display = 'none';
-
-
              }
              else if(choice == 'Permanent')
              {
                  p.style.display = 'none';
                  b.style.display = 'block';
-
+             }
+             else if(choice == 'Other')
+             {
+                 p.style.display = 'none';
+                b.style.display = 'none';
              }
 }
 

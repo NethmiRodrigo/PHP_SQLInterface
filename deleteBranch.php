@@ -16,7 +16,7 @@ $supergrade_branches = mysqli_fetch_all($result2, MYSQLI_ASSOC);
 mysqli_free_result($result2);
 
 if(isset($_POST["submit"])){
-    $name = $_POST["id"];
+    $name = $_POST["branch_id"];
     $type = $_POST["type"];
     $sql = "";
     if($type == 'regional_branch'){
@@ -28,7 +28,7 @@ if(isset($_POST["submit"])){
         $sql = "DELETE FROM supergrade_branch WHERE branch_id = '$name'";
     }
 
-    if(mysqli_query($conn, $sql)){
+    if($conn->query($sql) == TRUE){
         echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY DELETED!</div>";
     }else{
         echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>$conn->error</div>";
@@ -45,8 +45,8 @@ if(isset($_POST["submit"])){
                 <div class="card-body">
                     <form action="deleteBranch.php" method="POST">
                         <div class="form-group">
-                            <label for="id">Branch Id</label>
-                            <input type="text" name="id" required class="form-control"/>
+                            <label for="branch_id">Branch Id</label>
+                            <input type="text" name="branch_id" required class="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="type">Branch Type</label>

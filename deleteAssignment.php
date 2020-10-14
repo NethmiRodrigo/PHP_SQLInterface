@@ -13,9 +13,10 @@ mysqli_free_result($result);
 
 if(isset($_POST["submit"])){
 	$p_id = $_POST["p_id"];
-	$sql = "DELETE FROM assignment WHERE project_id = '$p_id'";
-
-    if(mysqli_query($conn, $sql)){
+    $sql = "DELETE FROM company_assignment where project_id = '$p_id';";
+    $sql .= "DELETE FROM ministry_assignment where project_id = '$p_id';";
+	$sql .= "DELETE FROM assignment WHERE project_id = '$p_id';";
+    if($conn->multi_query($sql)){
         echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY DELETED!</div>";
     }else{
         echo "<div style='color:white; background-color: #e2606b; font-weight: 400; border: solid 4px #ff1100'>$conn->error</div>";
@@ -53,6 +54,7 @@ if(isset($_POST["submit"])){
                         <th>Project Name</th>
                         <th>Budget</th>
                         <th>Duration</th>
+                        <th>Department Code</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,6 +64,7 @@ if(isset($_POST["submit"])){
                             <td><?php echo htmlspecialchars($assignment["name"]);?></td>
                             <td> <?php echo htmlspecialchars($assignment["budget"]);?></td>
                             <td><?php echo htmlspecialchars($assignment["duration"]);?></td>
+                            <td><?php echo htmlspecialchars($assignment["dept_code"]);?></td>
                         </tr>
                     <?php } ?>
                   

@@ -82,7 +82,7 @@ mysqli_close($conn);
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="deleteEmployee.php">Delete Employee</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Update Employee</a>
+                    <a class="dropdown-item" href="updateEmployee.php">Update Employee</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -94,7 +94,7 @@ mysqli_close($conn);
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="deleteDepartment.php">Delete Department</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Update Department</a>
+                    <a class="dropdown-item" href="updateDepartment.php">Update Department</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -106,7 +106,7 @@ mysqli_close($conn);
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="deleteAccount.php">Delete Account</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Update Account</a>
+                    <a class="dropdown-item" href="updateAccount.php">Update Account</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -118,7 +118,7 @@ mysqli_close($conn);
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="deleteAssignment.php">Delete Assignment</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Update Assignment</a>
+                    <a class="dropdown-item" href="updateAssignment.php">Update Assignment</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -130,7 +130,7 @@ mysqli_close($conn);
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="deleteCustomer.php">Delete Customer</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Update Customer</a>
+                    <a class="dropdown-item" href="updateCustomer.php">Update Customer</a>
                 </div>
             </li>
         </ul>

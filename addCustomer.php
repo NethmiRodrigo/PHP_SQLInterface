@@ -47,7 +47,8 @@
                 $b_no = $_POST["b_no"];
                 $b_type = $_POST["b_type"];
                 $net_worth = $_POST["net_worth"];
-                $sql = "INSERT INTO business(br_no, type, net_worth, customer_id) VALUES('$b_no', '$b_type', '$net_worth', '$last_id')";
+                $business_name = $_POST["business_name"];
+                $sql = "INSERT INTO business(br_no, type, net_worth, customer_id, business_name) VALUES('$b_no', '$b_type', '$net_worth', '$last_id', '$business_name')";
             }
             if(mysqli_query($conn, $sql)){
                 echo "<div style='color:white; background-color: #78dcb7; font-weight: 400; border: solid 4px #27ca8d'>ENTRY ADDED!</div>";
@@ -115,6 +116,10 @@
 							<div class="form-group">
                                 <label for="net_worth">Net Worth</label>
                                 <input type="number" name="net_worth" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="business_name">Business Name</label>
+                                <input type="text" name="business_name" class="form-control"/>
                             </div>
                         </div>
 						<div class="form-group">
